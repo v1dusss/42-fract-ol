@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/22 19:04:33 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/23 16:42:08 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_fractol
 	double	window_y;
 	double	x;
 	double	y;
+	int		fract;
 }			t_fractol;
 
 typedef struct s_pixel
@@ -34,5 +35,13 @@ typedef struct s_pixel
 	double	bb;
 	int		i;
 }			t_pixel;
+
+void		mandelbrot(mlx_image_t *img, t_fractol fract);
+void		julia(mlx_image_t *img, t_fractol fract);
+int			get_rgb_a(int r, int g, int b, int a);
+void		key_pres(mlx_key_data_t key_data, void *data);
+void		clear_pixel(t_pixel *pixel);
+void		clear_fract(t_fractol *fract, char *fract_name);
+void		usage(void);
 
 #endif

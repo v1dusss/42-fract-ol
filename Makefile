@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/03/22 16:31:06 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/03/23 18:39:27 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ MLXDIR = ./lib/mlx-42
 HEADER = -I ./ -I $(MLXDIR)/include -I ./lib/libft
 
 LIBS = $(MLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm ./lib/libft/libft.a
- 
-SRC = main.c
+
+SRC = main.c \
+mandelbrot.c \
+julia.c \
+utils.c
 
 OBJ = $(SRC:.c=.o)
 
