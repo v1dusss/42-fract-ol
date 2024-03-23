@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 20:24:52 by vsivanat          #+#    #+#              #
-#    Updated: 2024/02/28 16:55:51 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/03/23 19:03:35 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,9 @@ ft_lstlast_bonus.c \
 ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c \
 ft_lstiter_bonus.c \
-ft_lstmap_bonus.c
-
+ft_lstmap_bonus.c \
+ft_strlower.c \
+ft_strupper.c 
 
 OBJ = $(SRC:%.c=%.o)
 

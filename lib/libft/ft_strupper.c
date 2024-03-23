@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 19:29:29 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/23 16:34:44 by vsivanat         ###   ########.fr       */
+/*   Created: 2024/03/23 18:56:28 by vsivanat          #+#    #+#             */
+/*   Updated: 2024/03/23 19:04:02 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strupper(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while ((unsigned char)s1[i] == (unsigned char)s2[i] && (i < (n - 1))
-		&& s1[i])
+	while (str[i])
+	{
+		str[i] = ft_toupper(str[i]);
 		i++;
-	if (i == n || (s1[i] == '\0' && s2[i] == '\0'))
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	return (str);
 }
