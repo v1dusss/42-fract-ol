@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/23 19:06:16 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:26:40 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	usage(void)
 {
-	ft_putstr_fd("Usage: ./fractol [mandelbrot/julia]\n", 1);
+	ft_printf("Usage: ./fractol [mandelbrot | julia]\n");
+	ft_printf("\t-mandelbrot\n");
+	ft_printf("\t-julia\n");
+	ft_printf("\t-julia [ca] [cb]\n");
 	exit(-1);
 }
 
@@ -24,12 +27,12 @@ int	main(int argc, char **argv)
 	mlx_image_t			*img;
 	struct s_fractol	fract;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 4)
 		usage();
 	fract.window_x = 1080;
 	fract.window_y = 1080;
-	clear_fract(&fract, ft_strlower(argv[1]));
-	mlx = mlx_init(fract.window_x, fract.window_y, ft_strlower(argv[1]), true);
+	clear_fract(&fract, ft_strlower(argv[1]), argc, argv);
+	mlx = mlx_init(fract.window_x, fract.window_y, fract.fract_name, true);
 	img = mlx_new_image(mlx, fract.window_x, fract.window_y);
 	mlx_key_hook(mlx, key_pres, NULL);
 	while (++fract.x < fract.window_x)

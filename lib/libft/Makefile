@@ -6,11 +6,12 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 20:24:52 by vsivanat          #+#    #+#              #
-#    Updated: 2024/03/23 19:03:35 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/03/25 17:55:18 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = \
+ft_atof.c \
 ft_tolower.c \
 ft_toupper.c \
 ft_atoi.c \
@@ -60,7 +61,7 @@ ft_lstclear_bonus.c \
 ft_lstiter_bonus.c \
 ft_lstmap_bonus.c \
 ft_strlower.c \
-ft_strupper.c 
+ft_strupper.c
 
 OBJ = $(SRC:%.c=%.o)
 

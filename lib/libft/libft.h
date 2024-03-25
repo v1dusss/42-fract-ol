@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 16:55:51 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/23 19:05:47 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:54:58 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+double				ft_atof(const char *str);
 char				**ft_split(char const *s, char c);
 int					ft_isspace(int c);
 int					ft_atoi(const char *str);
