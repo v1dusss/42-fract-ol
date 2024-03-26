@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/25 19:26:40 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:04:43 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,59 @@ void	usage(void)
 	exit(-1);
 }
 
-int	main(int argc, char **argv)
+void	loop_img(t_master *master)
 {
-	mlx_t				*mlx;
-	mlx_image_t			*img;
-	struct s_fractol	fract;
-
-	if (argc < 2 || argc > 4)
-		usage();
-	fract.window_x = 1080;
-	fract.window_y = 1080;
-	clear_fract(&fract, ft_strlower(argv[1]), argc, argv);
-	mlx = mlx_init(fract.window_x, fract.window_y, fract.fract_name, true);
-	img = mlx_new_image(mlx, fract.window_x, fract.window_y);
-	mlx_key_hook(mlx, key_pres, NULL);
-	while (++fract.x < fract.window_x)
+	printf("%f\n", master->pixel->cb);
+	if (master->img)
 	{
-		fract.y = -1;
-		while (++fract.y < fract.window_y)
+		mlx_delete_image(master->mlx, master->img);
+		printf("img deleted\n");
+	}
+	master->img = mlx_new_image(master->mlx, master->fract->window_x,
+			master->fract->window_y);
+	printf("img created\n");
+	master->fract->x = -1;
+	while (++(master->fract->x) < master->fract->window_x)
+	{
+		master->fract->y = -1;
+		while (++(master->fract->y) < master->fract->window_y)
 		{
-			if (fract.fract == 1)
-				mandelbrot(img, fract);
-			else if (fract.fract == 2)
-				julia(img, fract);
+			if (master->set == MANDELBROT)
+				mandelbrot(master->img, master->fract, master->pixel);
+			else if (master->set == JULIA)
+			{
+				julia(master);
+			}
 		}
 	}
-	mlx_image_to_window(mlx, img, 0, 0);
+	mlx_image_to_window(master->mlx, master->img, 0, 0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_master	m;
+	t_master	*master;
+	t_fractol	fract;
+	t_pixel		pixel;
+
+	write(1, "0", 1);
+	master = &m;
+	master->fract = &fract;
+	master->pixel = &pixel;
+	if (argc < 2 || argc > 4)
+		usage();
+	write(1, "0", 1);
+	master->fract->window_x = 1080;
+	master->fract->window_y = 1080;
+	write(1, "0", 1);
+	clear_fract(master->fract, ft_strlower(argv[1]), argc, argv, master);
+	master->mlx = mlx_init(master->fract->window_x, master->fract->window_y,
+			master->fract->fract_name, true);
+	write(1, "0", 1);
+	loop_img(master);
+	mlx_image_to_window(master->mlx, master->img, 0, 0);
 	// mlx_loop_hook(mlx, mlx_render_images);
-	mlx_loop(mlx);
+	mlx_key_hook(master->mlx, key_pres, master);
+	mlx_loop(master->mlx);
 	return (0);
 }

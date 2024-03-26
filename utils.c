@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/25 19:01:20 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:55:26 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,20 @@ int	get_rgb_a(int r, int g, int b, int a)
 
 void	key_pres(mlx_key_data_t key_data, void *data)
 {
-	(void)data;
+	t_master	*master;
+
+	master = (t_master *)data;
 	if (key_data.key == MLX_KEY_ESCAPE)
 		exit(0);
+	if (key_data.key == MLX_KEY_UP)
+	{
+		master->fract->cb += 0.005;
+		if (master->set == JULIA)
+		{
+			loop_img(master);
+			printf("JULIA\n");
+		}
+	}
 }
 
 void	clear_pixel(t_pixel *pixel)
@@ -31,12 +42,12 @@ void	clear_pixel(t_pixel *pixel)
 	pixel->i = 0;
 }
 
-char	*mlx_name(t_fractol *fract, char *fract_name, int argc, char **argv)
+char	*mlx_name(t_master *master, char *fract_name, int argc, char **argv)
 {
 	char	*name;
 	char	*name2;
 
-	if (fract->fract == 1)
+	if (master->set == MANDELBROT)
 		return (fract_name);
 	else
 	{
@@ -56,15 +67,20 @@ char	*mlx_name(t_fractol *fract, char *fract_name, int argc, char **argv)
 	}
 }
 
-void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv)
+void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv,
+		t_master *master)
 {
 	fract->x = -1;
 	fract->y = -1;
 	if (ft_strncmp(fract_name, "mandelbrot", 10) == 0)
-		fract->fract = 1;
+	{
+		master->set = MANDELBROT;
+		printf("master->set: %d\n", master->set);
+	}
 	else if (ft_strncmp(fract_name, "julia", 5) == 0 && argc != 3)
 	{
-		fract->fract = 2;
+		master->set = JULIA;
+		printf("master->set: %d\n", master->set);
 		if (argc == 4)
 		{
 			fract->ca = ft_atof(argv[2]);
@@ -80,7 +96,7 @@ void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv)
 	}
 	else
 		usage();
-	if (fract->fract == 1)
+	if (master->set == MANDELBROT)
 		ft_printf("Fractol: %s\n", "mandelbrot");
-	fract->fract_name = mlx_name(fract, fract_name, argc, argv);
+	fract->fract_name = mlx_name(master, fract_name, argc, argv);
 }
