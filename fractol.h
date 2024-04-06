@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/26 17:42:30 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:37:20 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_fractol
 	char		*fract_name;
 }				t_fractol;
 
-typedef struct s_pixel
+typedef struct s_px
 {
 	double		a;
 	double		b;
@@ -38,7 +38,7 @@ typedef struct s_pixel
 	double		aa;
 	double		bb;
 	int			i;
-}				t_pixel;
+}				t_px;
 
 typedef enum e_set
 {
@@ -50,17 +50,17 @@ typedef struct s_master
 {
 	t_set		set;
 	t_fractol	*fract;
-	t_pixel		*pixel;
+	t_px		*px;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 }				t_master;
 
-void			mandelbrot(mlx_image_t *img, t_fractol *fract, t_pixel *pixel);
+void			mandelbrot(t_master *master);
 void			julia(t_master *master);
 void			loop_img(t_master *master);
 int				get_rgb_a(int r, int g, int b, int a);
 void			key_pres(mlx_key_data_t key_data, void *data);
-void			clear_pixel(t_pixel *pixel);
+void			clear_px(t_px *px);
 void			clear_fract(t_fractol *fract, char *fract_name, int argc,
 					char **argv, t_master *master);
 void			usage(void);

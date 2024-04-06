@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/26 17:55:26 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/03/27 20:06:06 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,35 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 		exit(0);
 	if (key_data.key == MLX_KEY_UP)
 	{
-		master->fract->cb += 0.005;
+		master->fract->cb += 0.0005;
 		if (master->set == JULIA)
-		{
 			loop_img(master);
-			printf("JULIA\n");
-		}
+	}
+	if (key_data.key == MLX_KEY_DOWN)
+	{
+		master->fract->cb -= 0.0005;
+		if (master->set == JULIA)
+			loop_img(master);
+	}
+	if (key_data.key == MLX_KEY_LEFT)
+	{
+		master->fract->ca -= 0.0005;
+		if (master->set == JULIA)
+			loop_img(master);
+	}
+	if (key_data.key == MLX_KEY_RIGHT)
+	{
+		master->fract->ca += 0.0005;
+		if (master->set == JULIA)
+			loop_img(master);
 	}
 }
 
-void	clear_pixel(t_pixel *pixel)
+void	clear_px(t_px *px)
 {
-	pixel->aa = 0;
-	pixel->bb = 0;
-	pixel->i = 0;
+	px->aa = 0;
+	px->bb = 0;
+	px->i = -1;
 }
 
 char	*mlx_name(t_master *master, char *fract_name, int argc, char **argv)
