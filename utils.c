@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/27 20:06:06 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/06 20:44:17 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,25 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 	master = (t_master *)data;
 	if (key_data.key == MLX_KEY_ESCAPE)
 		exit(0);
-	if (key_data.key == MLX_KEY_UP)
+	if (key_data.key == MLX_KEY_UP && master->set == JULIA)
 	{
-		master->fract->cb += 0.0005;
-		if (master->set == JULIA)
-			loop_img(master);
+		master->fract->cb += 0.0002;
+		loop_img_julia(master);
 	}
-	if (key_data.key == MLX_KEY_DOWN)
+	if (key_data.key == MLX_KEY_DOWN && master->set == JULIA)
 	{
-		master->fract->cb -= 0.0005;
-		if (master->set == JULIA)
-			loop_img(master);
+		master->fract->cb -= 0.0002;
+		loop_img_julia(master);
 	}
-	if (key_data.key == MLX_KEY_LEFT)
+	if (key_data.key == MLX_KEY_LEFT && master->set == JULIA)
 	{
-		master->fract->ca -= 0.0005;
-		if (master->set == JULIA)
-			loop_img(master);
+		master->fract->ca -= 0.0002;
+		loop_img_julia(master);
 	}
-	if (key_data.key == MLX_KEY_RIGHT)
+	if (key_data.key == MLX_KEY_RIGHT && master->set == JULIA)
 	{
-		master->fract->ca += 0.0005;
-		if (master->set == JULIA)
-			loop_img(master);
+		master->fract->ca += 0.0002;
+		loop_img_julia(master);
 	}
 }
 

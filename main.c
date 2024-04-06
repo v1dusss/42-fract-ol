@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/03/27 16:44:36 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:39:03 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,53 +21,30 @@ void	usage(void)
 	exit(-1);
 }
 
-void	loop_img(t_master *master)
-{
-	if (master->img)
-	{
-		mlx_delete_image(master->mlx, master->img);
-		printf("img deleted\n");
-	}
-	master->img = mlx_new_image(master->mlx, master->fract->window_x,
-			master->fract->window_y);
-	printf("img created\n");
-	master->fract->x = -1;
-	while (++(master->fract->x) < master->fract->window_x)
-	{
-		master->fract->y = -1;
-		while (++(master->fract->y) < master->fract->window_y)
-		{
-			if (master->set == MANDELBROT)
-				mandelbrot(master);
-			else if (master->set == JULIA)
-			{
-				julia(master);
-			}
-		}
-	}
-	mlx_image_to_window(master->mlx, master->img, 0, 0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_master	master;
 	t_fractol	fract;
 	t_px		px;
 
-	write(1, "0", 1);
+	write(1, "A\n", 2);
+	printf("MAX_ITERATIONS = %d\n", MAX_ITERATIONS);
 	master.fract = &fract;
 	master.px = &px;
 	if (argc < 2 || argc > 4)
 		usage();
-	write(1, "0", 1);
-	master.fract->window_x = 1080;
-	master.fract->window_y = 800;
-	write(1, "0", 1);
+	write(1, "B\n", 2);
+	master.window_x = 1080;
+	master.window_y = 800;
+	write(1, "C\n", 2);
 	clear_fract(master.fract, ft_strlower(argv[1]), argc, argv, &master);
-	master.mlx = mlx_init(master.fract->window_x, master.fract->window_y,
+	master.mlx = mlx_init(master.window_x, master.window_y,
 			master.fract->fract_name, true);
-	write(1, "0", 1);
-	loop_img(&master);
+	write(1, "D\n", 2);
+	if (master.set == MANDELBROT)
+		loop_img_mandelbrot(&master);
+	else
+		loop_img_julia(&master);
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
 	// mlx_loop_hook(mlx, mlx_render_images);
 	mlx_key_hook(master.mlx, key_pres, &master);
