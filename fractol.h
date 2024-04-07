@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 17:16:27 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:03:53 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
+
+typedef enum e_set
+{
+	MANDELBROT,
+	JULIA,
+}				t_set;
 
 typedef struct s_fractol
 {
@@ -39,12 +45,6 @@ typedef struct s_px
 	int			i;
 }				t_px;
 
-typedef enum e_set
-{
-	MANDELBROT,
-	JULIA,
-}				t_set;
-
 typedef struct s_master
 {
 	t_set		set;
@@ -61,18 +61,18 @@ typedef struct s_master
 # define MAX_ITERATIONS 100
 # define SCALE 350
 
-void			mandelbrot(t_master *master);
-void			julia(t_master *master);
-void			loop_img_mandelbrot(t_master *master);
-void			loop_img_julia(t_master *master);
-int				get_grey(int grey, int a);
-void			key_pres(mlx_key_data_t key_data, void *data);
-void			key_pres_julia(t_master *master, mlx_key_data_t key_data);
-void			clear_px(t_px *px);
-void			clear_fract(t_fractol *fract, char *fract_name, int argc,
-					char **argv, t_master *master);
-void			usage(void);
-int				map(t_master *master);
-void			mouseaction(double a, double b, void *params);
+void		mandelbrot(t_master *master);
+void		julia(t_master *master);
+void		loop_img_mandelbrot(t_master *master);
+void		loop_img_julia(t_master *master);
+void		key_pres(mlx_key_data_t key_data, void *data);
+void		key_pres_julia(t_master *master, mlx_key_data_t key_data);
+void		clear_px(t_px *px);
+void		clear_fract(char *fract_name, int argc, char **argv, t_master *master);
+void		usage(void);
+int			map(t_master *master);
+int			get_grey(int grey, int a);
+int			get_rgb_a(int r, int g, int b, int a);
+void		mouseaction(double a, double b, void *params);
 
 #endif

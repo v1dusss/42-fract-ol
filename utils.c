@@ -6,17 +6,21 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 16:32:07 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 21:29:39 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+int	get_rgb_a(int r, int g, int b, int a)
+{
+	return ((r * g) << 24 | g * 255 << 16 | b << 8 | a);
+}
+
 int	get_grey(int grey, int a)
 {
 	return (grey << 24 | grey << 16 | grey << 8 | a);
 }
-
 void	clear_px(t_px *px)
 {
 	px->aa = 0;
@@ -49,7 +53,7 @@ char	*mlx_name(t_master *master, char *fract_name, int argc, char **argv)
 	}
 }
 
-void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv,
+void	clear_fract(char *fract_name, int argc, char **argv,
 		t_master *master)
 {
 	if (ft_strncmp(fract_name, "mandelbrot", 10) == 0)
@@ -59,14 +63,14 @@ void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv,
 		master->set = JULIA;
 		if (argc == 4)
 		{
-			fract->ca = ft_atof(argv[2]);
-			fract->cb = ft_atof(argv[3]);
+			master->fract->ca = ft_atof(argv[2]);
+			master->fract->cb = ft_atof(argv[3]);
 			ft_printf("Fractol: julia [%s] [%s]\n", argv[2], argv[3]);
 		}
 		else
 		{
-			fract->ca = 0.285;
-			fract->cb = 0.01;
+			master->fract->ca = 0.285;
+			master->fract->cb = 0.01;
 			ft_printf("Fractol: julia [0.285] [0.01]\n");
 		}
 	}
@@ -74,7 +78,7 @@ void	clear_fract(t_fractol *fract, char *fract_name, int argc, char **argv,
 		usage();
 	if (master->set == MANDELBROT)
 		ft_printf("Fractol: %s\n", "mandelbrot");
-	fract->fract_name = mlx_name(master, fract_name, argc, argv);
+	master->fract->fract_name = mlx_name(master, fract_name, argc, argv);
 	
 }
 

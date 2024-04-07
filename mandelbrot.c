@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:14:43 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 17:03:41 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 21:30:17 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,12 @@
 void	loop_img_mandelbrot(t_master *master)
 {
 	master->fract->x = -1;
-	master->fract->y = -1;
-	if (master->img)
-		mlx_delete_image(master->mlx, master->img);
-	ft_printf("img deleted\n");
-	master->img = mlx_new_image(master->mlx, WINDOW_X, WINDOW_Y);
-	ft_printf("img created\n");
-	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
 	{
 		master->fract->y = -1;
 		while (++(master->fract->y) < WINDOW_Y)
 			mandelbrot(master);
 	}
-	mlx_image_to_window(master->mlx, master->img, 0, 0);
 }
 
 void	mandelbrot(t_master *master)
@@ -49,9 +41,12 @@ void	mandelbrot(t_master *master)
 			break ;
 		master->px->i++;
 	}
+	// if (master->px->i == master->iterations)
+	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_reb_a(0, 0, 0, 255));
+	// else
+	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_reb_a(200, master->px->i, 100, 255));
 	if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y,
-			get_grey(0, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
 	else
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(map(master), 255));
 }

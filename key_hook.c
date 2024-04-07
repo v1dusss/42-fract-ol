@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 17:08:47 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:50:08 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 	else if (key_data.key == MLX_KEY_KP_ADD || key_data.key == MLX_KEY_KP_SUBTRACT)
 	{
 		if (key_data.key == MLX_KEY_KP_ADD)
-			master->iterations += 25;
+			master->iterations += 10;
 		else
-			master->iterations -= 25;
+			master->iterations -= 10;
 		if (master->set == MANDELBROT)
 			loop_img_mandelbrot(master);
 		else
@@ -73,7 +73,7 @@ void	mouseaction(double a, double b, void *params)
 
 	(void)a;
 	master = (t_master *)params;
-	printf("MOUSE SCROLL\n");
+	ft_printf("MOUSE SCROLL\n");
 	if (b > 0)
 		multiplier = 1.1;
 	else
