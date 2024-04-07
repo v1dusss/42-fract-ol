@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/06 19:13:38 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/07 15:01:36 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIBS = $(MLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm ./lib/libft/libft.a
 
 SRC = main.c \
 mandelbrot.c \
+key_hook.c \
 julia.c \
 utils.c
 
