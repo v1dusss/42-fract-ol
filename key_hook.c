@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 16:34:36 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:08:47 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,23 @@ void key_pres_julia(t_master *master, mlx_key_data_t key_data)
 		loop_img_julia(master);
 		ft_printf("CA += 0.0002\n");
 	}
+}
+
+void	mouseaction(double a, double b, void *params)
+{
+	double	multiplier;
+	t_master	*master;
+
+	(void)a;
+	master = (t_master *)params;
+	printf("MOUSE SCROLL\n");
+	if (b > 0)
+		multiplier = 1.1;
+	else
+		multiplier = 0.9;
+	master->scale *= multiplier;
+	if (master->set == MANDELBROT)
+		loop_img_mandelbrot(master);
+	else
+		loop_img_julia(master);
 }

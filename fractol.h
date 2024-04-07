@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 14:55:50 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:16:27 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ typedef struct s_master
 	t_px		*px;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	int			scale;
 	int			iterations;
 }				t_master;
 
 # define WINDOW_X 1080
 # define WINDOW_Y 720
-// # define MAX_ITERATIONS 100
+# define MAX_ITERATIONS 100
+# define SCALE 350
 
 void			mandelbrot(t_master *master);
 void			julia(t_master *master);
@@ -71,5 +73,6 @@ void			clear_fract(t_fractol *fract, char *fract_name, int argc,
 					char **argv, t_master *master);
 void			usage(void);
 int				map(t_master *master);
+void			mouseaction(double a, double b, void *params);
 
 #endif

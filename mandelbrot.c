@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:14:43 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 16:24:57 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:03:41 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	loop_img_mandelbrot(t_master *master)
 	if (master->img)
 		mlx_delete_image(master->mlx, master->img);
 	ft_printf("img deleted\n");
-	master->img = mlx_new_image(master->mlx, WINDOW_X,
-			WINDOW_Y);
+	master->img = mlx_new_image(master->mlx, WINDOW_X, WINDOW_Y);
 	ft_printf("img created\n");
 	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
@@ -35,9 +34,8 @@ void	loop_img_mandelbrot(t_master *master)
 void	mandelbrot(t_master *master)
 {
 	clear_px(master->px);
-	master->px->b = (((WINDOW_Y / -2) + master->fract->y) / 350);
-	master->px->a = (((WINDOW_X / -2) + master->fract->x) / 350)
-		- 0.5;
+	master->px->b = (((WINDOW_Y / -2) + master->fract->y) / master->scale);
+	master->px->a = (((WINDOW_X / -2) + master->fract->x) / master->scale) - 0.5;
 	master->px->ca = master->px->a;
 	master->px->cb = master->px->b;
 	while (master->px->i < master->iterations)

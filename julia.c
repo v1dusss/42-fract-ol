@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:38:17 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 16:24:57 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:06:53 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	loop_img_julia(t_master *master)
 	if (master->img)
 		mlx_delete_image(master->mlx, master->img);
 	ft_printf("img deleted\n");
-	master->img = mlx_new_image(master->mlx, WINDOW_X,
-			WINDOW_Y);
+	master->img = mlx_new_image(master->mlx, WINDOW_X, WINDOW_Y);
 	ft_printf("img created\n");
 	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
@@ -35,10 +34,8 @@ void	loop_img_julia(t_master *master)
 void	julia(t_master *master)
 {
 	clear_px(master->px);
-	master->px->b = ((WINDOW_Y / -2) + master->fract->y)
-		/ (WINDOW_Y / 2.3);
-	master->px->a = ((WINDOW_X / -2) + master->fract->x)
-			/ (WINDOW_Y / 2.3);
+	master->px->b = ((WINDOW_Y / -2) + master->fract->y) / master->scale;
+	master->px->a = ((WINDOW_X / -2) + master->fract->x) / master->scale;
 	while (++master->px->i < master->iterations)
 	{
 		master->px->aa = master->px->a * master->px->a
