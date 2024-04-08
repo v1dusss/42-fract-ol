@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 21:29:39 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:44:03 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	get_rgb_a(int r, int g, int b, int a)
 {
-	return ((r * g) << 24 | g * 255 << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 int	get_grey(int grey, int a)
 {
 	return (grey << 24 | grey << 16 | grey << 8 | a);
 }
-void	clear_px(t_px *px)
+void	clear_px(t_master *master)
 {
-	px->aa = 0;
-	px->bb = 0;
-	px->i = -1;
+	master->px->aa = 0;
+	master->px->bb = 0;
+	master->px->i = -1;
 }
 
 char	*mlx_name(t_master *master, char *fract_name, int argc, char **argv)
@@ -74,12 +74,15 @@ void	clear_fract(char *fract_name, int argc, char **argv,
 			ft_printf("Fractol: julia [0.285] [0.01]\n");
 		}
 	}
+	else if (ft_strncmp(fract_name, "burningship", 11) == 0)
+		master->set = BURNINGSHIP;
 	else
 		usage();
 	if (master->set == MANDELBROT)
 		ft_printf("Fractol: %s\n", "mandelbrot");
+	else if (master->set == BURNINGSHIP)
+		ft_printf("Fractol: %s\n", "burningship");
 	master->fract->fract_name = mlx_name(master, fract_name, argc, argv);
-	
 }
 
 int map(t_master *master)
@@ -96,3 +99,4 @@ int map(t_master *master)
 	return (sqrt(master->px->i / (255.0 / (master->iterations * master->iterations * 2))));
 	// return ((master->px->i - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
 }
+

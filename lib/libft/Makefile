@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 20:24:52 by vsivanat          #+#    #+#              #
-#    Updated: 2024/03/25 17:55:18 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/08 14:33:21 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,26 +63,52 @@ ft_lstmap_bonus.c \
 ft_strlower.c \
 ft_strupper.c
 
-OBJ = $(SRC:%.c=%.o)
-
 NAME = libft.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+COMPILER = cc
+CFLAGS = -c -Wall -Wextra -Werror -I.
+RM = rm -f
 
-.PHONY: all compile archive clean fclean re
+OBJECTS = $(SRC:.c=.o)
 
-all: compile archive
+all: $(NAME)
 
-compile: $(OBJ)
+$(NAME): $(OBJECTS)
+	ar -rcs $(NAME) $(OBJECTS)
 
-archive:
-	ar -rcs $(NAME) $(OBJ)
+%.o: %.c
+	$(COMPILER) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
+# OBJ = $(SRC:%.c=%.o)
+
+# NAME = libft.a
+
+# CC = cc
+# CFLAGS = -Wall -Wextra -Werror
+
+# all: compile archive
+
+# compile: $(OBJ)
+
+# archive:
+# 	ar -rcs $(NAME) $(OBJ)
+
+# clean:
+# 	rm -f $(OBJ)
+
+# fclean: clean
+# 	rm -f $(NAME)
+
+# re: fclean all
+
+# .PHONY: all compile archive clean fclean re

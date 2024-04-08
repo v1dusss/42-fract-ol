@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 21:45:02 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:46:20 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	main(int argc, char **argv)
 	master.img = mlx_new_image(master.mlx, WINDOW_X, WINDOW_Y);
 	if (master.set == MANDELBROT)
 		loop_img_mandelbrot(&master);
-	else
+	else if (master.set == JULIA)
 		loop_img_julia(&master);
+	else
+		loop_img_buringship(&master);
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
 	mlx_scroll_hook(master.mlx, mouseaction, &master);
 	mlx_key_hook(master.mlx, key_pres, &master);

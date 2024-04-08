@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 18:50:08 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:06:09 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,51 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 			master->iterations -= 10;
 		if (master->set == MANDELBROT)
 			loop_img_mandelbrot(master);
-		else
+		else if (master->set == JULIA)
 			loop_img_julia(master);
+		else
+			loop_img_buringship(master);
 		ft_printf("ITERATIONS = %d\n", master->iterations);
 	}
 	else if (master->set == JULIA)
 		key_pres_julia(master, key_data);
+	if (key_data.key == MLX_KEY_UP)
+		master->fract->horizontal_shift -= 0.1;
+	if (key_data.key == MLX_KEY_DOWN)
+		master->fract->horizontal_shift += 0.1;
+	if (key_data.key == MLX_KEY_LEFT)
+		master->fract->vertical_shift -= 0.1;
+	if (key_data.key == MLX_KEY_RIGHT)
+		master->fract->vertical_shift += 0.1;
+	if (master->set == MANDELBROT)
+		loop_img_mandelbrot(master);
+	else if (master->set == JULIA)
+		loop_img_julia(master);
+	else
+		loop_img_buringship(master);
 }
 
 void key_pres_julia(t_master *master, mlx_key_data_t key_data)
 {
-	if (key_data.key == MLX_KEY_UP)
+	if (key_data.key == MLX_KEY_W)
 	{
 		master->fract->cb += 0.0002;
 		loop_img_julia(master);
 		ft_printf("CB += 0.0002\n");
 	}
-	if (key_data.key == MLX_KEY_DOWN)
+	if (key_data.key == MLX_KEY_S)
 	{
 		master->fract->cb -= 0.0002;
 		loop_img_julia(master);
 		ft_printf("CB -= 0.0002\n");
 	}
-	if (key_data.key == MLX_KEY_LEFT)
+	if (key_data.key == MLX_KEY_A)
 	{
 		master->fract->ca -= 0.0002;
 		loop_img_julia(master);
 		ft_printf("CA -= 0.0002\n");
 	}
-	if (key_data.key == MLX_KEY_RIGHT)
+	if (key_data.key == MLX_KEY_D)
 	{
 		master->fract->ca += 0.0002;
 		loop_img_julia(master);
@@ -81,6 +97,8 @@ void	mouseaction(double a, double b, void *params)
 	master->scale *= multiplier;
 	if (master->set == MANDELBROT)
 		loop_img_mandelbrot(master);
-	else
+	else if (master->set == JULIA)
 		loop_img_julia(master);
+	else
+		loop_img_buringship(master);
 }

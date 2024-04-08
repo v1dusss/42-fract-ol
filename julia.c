@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:38:17 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 21:26:24 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:49:40 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	loop_img_julia(t_master *master)
 
 void	julia(t_master *master)
 {
-	clear_px(master->px);
+	clear_px(master);
 	master->px->b = ((WINDOW_Y / -2) + master->fract->y) / master->scale;
 	master->px->a = ((WINDOW_X / -2) + master->fract->x) / master->scale;
 	while (++master->px->i < master->iterations)
@@ -39,7 +39,11 @@ void	julia(t_master *master)
 			break ;
 	}
 	if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 0, 0, 255));
 	else
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(map(master), 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i * 20, master->px->i *5, master->px->i * 1, 255));
+	// if (master->px->i == master->iterations)
+	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
+	// else
+	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(map(master), 255));
 }

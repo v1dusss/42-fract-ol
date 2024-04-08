@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/07 22:10:13 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/08 14:48:28 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LIBS = $(MLXDIR)/build/libmlx42.a -ldl -lglfw -pthread -lm ./lib/libft/libft.a
 SRC = main.c \
 mandelbrot.c \
 julia.c \
+burningship.c \
 key_hook.c \
 utils.c
 
@@ -35,7 +36,8 @@ libft:
 	make -C ./lib/libft
 
 libmlx:
-	cmake $(MLXDIR) -B $(MLXDIR)/build && make -C $(MLXDIR)/build -j4
+	cmake $(MLXDIR) -B $(MLXDIR)/build
+	make -C $(MLXDIR)/build -j4
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
@@ -54,4 +56,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libmlx libft
+.PHONY: all clean fclean re libmlx libft fractol $(NAME)

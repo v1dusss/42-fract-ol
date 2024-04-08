@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/07 22:03:53 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:22:40 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum e_set
 {
 	MANDELBROT,
 	JULIA,
+	BURNINGSHIP,
 }				t_set;
 
 typedef struct s_fractol
@@ -32,6 +33,8 @@ typedef struct s_fractol
 	double		ca;
 	double		cb;
 	char		*fract_name;
+	double		vertical_shift;
+	double		horizontal_shift;
 }				t_fractol;
 
 typedef struct s_px
@@ -56,18 +59,21 @@ typedef struct s_master
 	int			iterations;
 }				t_master;
 
-# define WINDOW_X 1080
-# define WINDOW_Y 720
-# define MAX_ITERATIONS 100
-# define SCALE 350
+# define WINDOW_X 1500
+# define WINDOW_Y 1080
+
+# define MAX_ITERATIONS 40
+# define SCALE 400
 
 void		mandelbrot(t_master *master);
 void		julia(t_master *master);
+void		buringship(t_master *master);
 void		loop_img_mandelbrot(t_master *master);
 void		loop_img_julia(t_master *master);
+void		loop_img_buringship(t_master *master);
 void		key_pres(mlx_key_data_t key_data, void *data);
 void		key_pres_julia(t_master *master, mlx_key_data_t key_data);
-void		clear_px(t_px *px);
+void		clear_px(t_master *master);
 void		clear_fract(char *fract_name, int argc, char **argv, t_master *master);
 void		usage(void);
 int			map(t_master *master);
