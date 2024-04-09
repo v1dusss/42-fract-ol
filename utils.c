@@ -6,21 +6,12 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/08 15:44:03 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:43:46 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	get_rgb_a(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-
-int	get_grey(int grey, int a)
-{
-	return (grey << 24 | grey << 16 | grey << 8 | a);
-}
 void	clear_px(t_master *master)
 {
 	master->px->aa = 0;
@@ -53,8 +44,7 @@ char	*mlx_name(t_master *master, char *fract_name, int argc, char **argv)
 	}
 }
 
-void	clear_fract(char *fract_name, int argc, char **argv,
-		t_master *master)
+void	clear_fract(char *fract_name, int argc, char **argv, t_master *master)
 {
 	if (ft_strncmp(fract_name, "mandelbrot", 10) == 0)
 		master->set = MANDELBROT;
@@ -63,14 +53,14 @@ void	clear_fract(char *fract_name, int argc, char **argv,
 		master->set = JULIA;
 		if (argc == 4)
 		{
-			master->fract->ca = ft_atof(argv[2]);
-			master->fract->cb = ft_atof(argv[3]);
+			master->px->ca = ft_atof(argv[2]);
+			master->px->cb = ft_atof(argv[3]);
 			ft_printf("Fractol: julia [%s] [%s]\n", argv[2], argv[3]);
 		}
 		else
 		{
-			master->fract->ca = 0.285;
-			master->fract->cb = 0.01;
+			master->px->ca = 0.285;
+			master->px->cb = 0.01;
 			ft_printf("Fractol: julia [0.285] [0.01]\n");
 		}
 	}
@@ -84,19 +74,3 @@ void	clear_fract(char *fract_name, int argc, char **argv,
 		ft_printf("Fractol: %s\n", "burningship");
 	master->fract->fract_name = mlx_name(master, fract_name, argc, argv);
 }
-
-int map(t_master *master)
-{
-	int in_min;
-	int in_max;
-	int out_min;
-	int out_max;
-	
-	in_min = 0;
-	in_max = master->iterations;
-	out_min = 0;
-	out_max = 255;
-	return (sqrt(master->px->i / (255.0 / (master->iterations * master->iterations * 2))));
-	// return ((master->px->i - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
-}
-

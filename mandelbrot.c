@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:14:43 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/08 16:19:54 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:44:57 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	mandelbrot(t_master *master)
 			break ;
 		master->px->i++;
 	}
-	if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 0, 0, 255));
+if (master->px->i == master->iterations)
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 255, master));
 	else
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, master->px->i * 150, 0, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i, 255, master));
 	// if (master->px->i == master->iterations)
 	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
 	// else

@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:38:17 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/08 15:49:40 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:44:50 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	julia(t_master *master)
 		master->px->aa = master->px->a * master->px->a
 			- master->px->b * master->px->b;
 		master->px->bb = 2 * master->px->a * master->px->b;
-		master->px->a = master->px->aa + master->fract->ca;
-		master->px->b = master->px->bb + master->fract->cb;
+		master->px->a = master->px->aa + master->px->ca;
+		master->px->b = master->px->bb + master->px->cb;
 		if ((master->px->a * master->px->a + master->px->b * master->px->b) > 16)
 			break ;
 	}
 	if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 0, 0, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 255, master));
 	else
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i * 20, master->px->i *5, master->px->i * 1, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i, 255, master));
 	// if (master->px->i == master->iterations)
 	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
 	// else

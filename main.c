@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/08 14:46:20 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:42:43 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,27 @@ int	main(int argc, char **argv)
 	clear_fract(ft_strlower(argv[1]), argc, argv, &master);
 	master.mlx = mlx_init(WINDOW_X, WINDOW_Y, master.fract->fract_name, false);
 	master.img = mlx_new_image(master.mlx, WINDOW_X, WINDOW_Y);
-	if (master.set == MANDELBROT)
-		loop_img_mandelbrot(&master);
-	else if (master.set == JULIA)
-		loop_img_julia(&master);
-	else
-		loop_img_buringship(&master);
+		if (master.set == MANDELBROT)
+		{
+				master.r = MANDELBROT_R;
+				master.g = MANDELBROT_G;
+				master.b = MANDELBROT_B;
+				loop_img_mandelbrot(&master);
+		}
+		else if (master.set == JULIA)
+		{
+				master.r = JULIA_R;
+				master.g = JULIA_G;
+				master.b = JULIA_B;
+				loop_img_julia(&master);
+		}
+		else
+		{
+				master.r = BURNINGSHIP_R;
+				master.g = BURNINGSHIP_G;
+				master.b = BURNINGSHIP_B;
+				loop_img_buringship(&master);
+		}
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
 	mlx_scroll_hook(master.mlx, mouseaction, &master);
 	mlx_key_hook(master.mlx, key_pres, &master);

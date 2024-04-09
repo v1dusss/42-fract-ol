@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/08 14:48:28 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/09 13:59:18 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ mandelbrot.c \
 julia.c \
 burningship.c \
 key_hook.c \
+color_picking.c \
 utils.c
 
 OBJ = $(SRC:.c=.o)

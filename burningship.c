@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:43:32 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/08 15:49:44 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:45:04 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	buringship(t_master *master)
 			break ;
 		master->px->i++;
 	}
-	if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 0, 0, 255));
+if (master->px->i == master->iterations)
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 255, master));
 	else
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i * 20, 0, 0, 255));
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i, 255, master));
 }
