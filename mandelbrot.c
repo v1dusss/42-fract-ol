@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:14:43 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/09 14:44:57 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:54:47 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	loop_img_mandelbrot(t_master *master)
 {
+	master->r %= 255;
+	master->g %= 255;
+	master->b %= 255;
 	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
 	{

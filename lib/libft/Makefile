@@ -6,17 +6,16 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/14 20:24:52 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/08 14:33:21 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/09 17:12:32 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = \
 ft_atof.c \
-ft_tolower.c \
-ft_toupper.c \
 ft_atoi.c \
 ft_bzero.c \
 ft_calloc.c \
+ft_free_arr.c \
 ft_isalnum.c \
 ft_isalpha.c \
 ft_isascii.c \
@@ -48,7 +47,8 @@ ft_strrchr.c \
 ft_strtrim.c \
 ft_substr.c \
 ft_strlen_c.c \
-ft_free_arr.c \
+ft_tolower.c \
+ft_toupper.c \
 ft_printf.c \
 ft_print_cases.c \
 ft_lstnew_bonus.c \

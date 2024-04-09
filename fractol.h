@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/09 14:42:16 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:55:33 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,17 @@ typedef struct s_master
 # define MAX_ITERATIONS 40
 # define SCALE 400
 
-# define MANDELBROT_R 100
-# define MANDELBROT_G 100
-# define MANDELBROT_B 100
+# define MANDELBROT_R 90
+# define MANDELBROT_G 90
+# define MANDELBROT_B 90
 
-# define JULIA_R 100
-# define JULIA_G 100
-# define JULIA_B 100
+# define JULIA_R 90
+# define JULIA_G 90
+# define JULIA_B 90
 
-# define BURNINGSHIP_R 100
-# define BURNINGSHIP_G 100
-# define BURNINGSHIP_B 100
+# define BURNINGSHIP_R 90
+# define BURNINGSHIP_G 90
+# define BURNINGSHIP_B 90
 
 void		mandelbrot(t_master *master);
 void		julia(t_master *master);
@@ -87,6 +87,7 @@ void		loop_img_mandelbrot(t_master *master);
 void		loop_img_julia(t_master *master);
 void		loop_img_buringship(t_master *master);
 void		key_pres(mlx_key_data_t key_data, void *data);
+void		key_stadart(t_master *master, mlx_key_data_t key_data);
 void		key_pres_julia(t_master *master, mlx_key_data_t key_data);
 void		clear_px(t_master *master);
 void		clear_fract(char *fract_name, int argc, char **argv, t_master *master);
@@ -95,4 +96,5 @@ int			map(t_master *master);
 int			get_grey(int grey, int a);
 int			get_rgb_a(int i, int a, t_master *master);
 void		mouseaction(double a, double b, void *params);
+
 #endif
