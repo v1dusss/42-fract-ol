@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 19:43:03 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:06:38 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	presettings(t_master *master)
 	}
 }
 
-void close_window(void *param)
+void	close_window(void *param)
 {
 	t_master	*master;
 
@@ -60,7 +60,7 @@ void close_window(void *param)
 		mlx_terminate(master->mlx);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_master	master;
 	t_fractol	fract;
@@ -78,7 +78,6 @@ int main(int argc, char **argv)
 	mlx_scroll_hook(master.mlx, mouseaction, &master);
 	mlx_key_hook(master.mlx, key_pres, &master);
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
-	// mlx_close_hook(master.mlx, close_window, &master);
 	mlx_loop(master.mlx);
 	close_window(&master);
 	return (0);

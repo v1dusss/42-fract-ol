@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 19:57:02 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:01:11 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ typedef struct s_master
 void		mandelbrot(t_master *master);
 void		julia(t_master *master);
 void		buringship(t_master *master);
-void		presettings(t_master *master);
 void		loop_img_mandelbrot(t_master *master);
 void		loop_img_julia(t_master *master);
 void		loop_img_buringship(t_master *master);
+void		presettings(t_master *master);
 void		key_pres(mlx_key_data_t key_data, void *data);
 void		key_move(t_master *master, mlx_key_data_t key_data);
 void		key_stadart(t_master *master, mlx_key_data_t key_data);
