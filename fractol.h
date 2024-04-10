@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:24:46 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 15:49:36 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:57:02 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "lib/libft/libft.h"
 # include "lib/mlx-42/include/MLX42/MLX42.h"
 # include <math.h>
-# include <stdio.h>
 # include <string.h>
 
 typedef enum e_set
@@ -74,8 +73,8 @@ typedef struct s_master
 
 # define JULIA_R 0
 # define JULIA_G 0
-# define JULIA_B 50
-# define JULIA_SCALE 350
+# define JULIA_B 5
+# define JULIA_SCALE 300
 
 # define BURNINGSHIP_R 0
 # define BURNINGSHIP_G 5
@@ -94,10 +93,11 @@ void		key_move(t_master *master, mlx_key_data_t key_data);
 void		key_stadart(t_master *master, mlx_key_data_t key_data);
 void		key_pres_julia(t_master *master, mlx_key_data_t key_data);
 void		clear_px(t_master *master);
-void		clear_fract(char *fract_name, int argc, char **argv, t_master *master);
+int			valid_params(char *input);
+void		julia_settings(int argc, char **argv, t_master *master);
+void		which_fract(int argc, char **argv, t_master *master);
 void		usage(void);
-void		quit_prosses(t_master *master);
-void		quit_prosses(t_master *master);
+void		close_window(void *param);
 int			get_grey(int grey, int a);
 int			get_rgb_a(int i, int a, t_master *master);
 void		mouseaction(double a, double b, void *params);

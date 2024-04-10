@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 15:49:03 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:52:51 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void key_pres_julia(t_master *master, mlx_key_data_t key_data)
 		master->px->ca -= 0.0002;
 	if (key_data.key == MLX_KEY_D)
 		master->px->ca += 0.0002;
-	printf("CA = %f\nCB = %f\n", master->px->ca, master->px->cb);
 	loop_img_julia(master);
 }
 
@@ -78,7 +77,7 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 		return ;
 	master = (t_master *)data;
 	if (key_data.key == MLX_KEY_ESCAPE)
-		quit_prosses(master);
+		exit(0);
 	if (key_data.key == MLX_KEY_KP_ADD || key_data.key == MLX_KEY_KP_SUBTRACT || key_data.key == MLX_KEY_R || key_data.key == MLX_KEY_G || key_data.key == MLX_KEY_B)
 		key_stadart((t_master *)data, key_data);
 	if (key_data.key == MLX_KEY_UP || key_data.key == MLX_KEY_DOWN || key_data.key == MLX_KEY_LEFT || key_data.key == MLX_KEY_RIGHT)

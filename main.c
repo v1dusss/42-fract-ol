@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 16:45:47 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:43:03 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,16 @@ void	presettings(t_master *master)
 	}
 }
 
-void	quit_prosses(t_master *master)
-{
-	free(master);
-	exit(0);
-}
-
 void close_window(void *param)
 {
 	t_master	*master;
 
 	master = (t_master *)param;
-	quit_prosses(master);
+	if (master->mlx)
+		mlx_terminate(master->mlx);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	t_master	master;
 	t_fractol	fract;
@@ -75,15 +70,16 @@ int	main(int argc, char **argv)
 	master.px = &px;
 	if (argc < 2 || argc > 4)
 		usage();
-	clear_fract(ft_strlower(argv[1]), argc, argv, &master);
-	master.mlx = mlx_init(WINDOW_X, WINDOW_Y, master.fract->fract_name, true);
+	which_fract(argc, argv, &master);
+	master.mlx = mlx_init(WINDOW_X, WINDOW_Y, master.fract->fract_name, false);
 	master.img = mlx_new_image(master.mlx, WINDOW_X, WINDOW_Y);
 	presettings(&master);
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
 	mlx_scroll_hook(master.mlx, mouseaction, &master);
 	mlx_key_hook(master.mlx, key_pres, &master);
 	mlx_image_to_window(master.mlx, master.img, 0, 0);
-	mlx_close_hook(master.mlx, close_window, &master);
+	// mlx_close_hook(master.mlx, close_window, &master);
 	mlx_loop(master.mlx);
+	close_window(&master);
 	return (0);
 }
