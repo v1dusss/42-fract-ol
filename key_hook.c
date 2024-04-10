@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 20:05:51 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:44:22 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	key_pres(mlx_key_data_t key_data, void *data)
 {
 	t_master	*master;
 
-	if (key_data.action != MLX_PRESS)
+	if (key_data.action != MLX_PRESS && key_data.action != MLX_REPEAT)
 		return ;
 	master = (t_master *)data;
 	if (key_data.key == MLX_KEY_ESCAPE)

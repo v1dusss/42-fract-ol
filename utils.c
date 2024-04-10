@@ -6,11 +6,12 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 19:57:51 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:23:32 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	clear_px(t_master *master)
 {
@@ -24,7 +25,7 @@ int	valid_params(char *input)
 	int	i;
 
 	i = 0;
-	if (input [0] == '\0')
+	if (input[0] == '\0')
 		return (0);
 	if (input[0] == '-' || input[0] == '+')
 		i++;
@@ -32,9 +33,10 @@ int	valid_params(char *input)
 		i++;
 	if (input[i] == '\0')
 		return (1);
-	if (input[0] != '.')
+	if (input[i] != '.')
 		return (0);
-	i++;
+	if (input[i] == '.')
+		i++;
 	while (input[i] >= '0' && input[i] <= '9')
 		i++;
 	if (input[i] == '\0')
@@ -64,19 +66,19 @@ void	julia_settings(int argc, char **argv, t_master *master)
 
 void	which_fract(int argc, char **argv, t_master *master)
 {
-	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		master->set = MANDELBROT;
 		ft_printf("Fractol: mandelbrot\n");
 		master->fract->fract_name = "mandelbrot";
 	}
-	else if (ft_strncmp(argv[1], "burningship", 11) == 0)
+	else if (ft_strncmp(argv[1], "burningship", 12) == 0)
 	{
 		master->set = BURNINGSHIP;
 		ft_printf("Fractol: burningship\n");
 		master->fract->fract_name = "burningship";
 	}
-	else if (ft_strncmp(argv[1], "julia", 5) == 0 && argc != 3)
+	else if (ft_strncmp(argv[1], "julia", 6) == 0 && argc != 3)
 		julia_settings(argc, argv, master);
 	else
 		usage();

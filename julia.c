@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:38:17 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 20:04:22 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:00:12 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	julia(t_master *master)
 	}
 	if (master->px->i == master->iterations || master->px->i == 0)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y,
-			get_rgb_a(0, 255, master));
-	else
+			get_grey(0, 255));
+	else if (master->px->i > 0)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y,
 			get_rgb_a(master->px->i, 255, master));
 }

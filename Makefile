@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/10 19:47:22 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/10 20:25:15 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libmlx libft fractol $(NAME)
+.PHONY: all clean fclean re libmlx libft
 
 
 
