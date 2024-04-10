@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:43:32 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/09 15:54:52 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:10:36 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	loop_img_buringship(t_master *master)
 {
-	master->r %= 255;
-	master->g %= 255;
-	master->b %= 255;
 	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
 	{
@@ -29,8 +26,8 @@ void	loop_img_buringship(t_master *master)
 void	buringship(t_master *master)
 {
 	clear_px(master);
-	master->px->b = (((WINDOW_Y / -2) + master->fract->y) / master->scale);
-	master->px->a = (((WINDOW_X / -2) + master->fract->x) / master->scale) - 0.5;
+	master->px->b = (((WINDOW_Y / -2) + master->fract->y) / master->scale) + master->fract->horizontal_shift - 0.5;
+	master->px->a = (((WINDOW_X / -2) + master->fract->x) / master->scale) + master->fract->vertical_shift - 0.5;
 	master->px->ca = master->px->a;
 	master->px->cb = master->px->b;
 	while (master->px->i < master->iterations)
@@ -43,8 +40,10 @@ void	buringship(t_master *master)
 			break ;
 		master->px->i++;
 	}
-if (master->px->i == master->iterations)
-		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 255, master));
-	else
+	if (master->px->i == master->iterations)
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
+	else if (master->px->i > 0)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i, 255, master));
+	else
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
 }

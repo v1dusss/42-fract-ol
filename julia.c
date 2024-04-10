@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:38:17 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/09 15:54:38 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:10:29 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	loop_img_julia(t_master *master)
 {
-	master->r %= 255;
-	master->g %= 255;
-	master->b %= 255;
 	master->fract->x = -1;
 	while (++(master->fract->x) < WINDOW_X)
 	{
@@ -29,8 +26,8 @@ void	loop_img_julia(t_master *master)
 void	julia(t_master *master)
 {
 	clear_px(master);
-	master->px->b = ((WINDOW_Y / -2) + master->fract->y) / master->scale;
-	master->px->a = ((WINDOW_X / -2) + master->fract->x) / master->scale;
+	master->px->b = (((WINDOW_Y / -2) + master->fract->y) / master->scale) + master->fract->horizontal_shift;
+	master->px->a = (((WINDOW_X / -2) + master->fract->x) / master->scale) + master->fract->vertical_shift;
 	while (++master->px->i < master->iterations)
 	{
 		master->px->aa = master->px->a * master->px->a
@@ -43,10 +40,8 @@ void	julia(t_master *master)
 	}
 	if (master->px->i == master->iterations)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(0, 255, master));
-	else
+	else if (master->px->i > 0)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_rgb_a(master->px->i, 255, master));
-	// if (master->px->i == master->iterations)
-	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
-	// else
-	// 	mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(map(master), 255));
+	else
+		mlx_put_pixel(master->img, master->fract->x, master->fract->y, get_grey(0, 255));
 }
