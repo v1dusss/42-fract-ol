@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 20:27:04 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 21:37:33 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:48:31 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	close_window(void *param)
 	t_master	*master;
 
 	master = (t_master *)param;
-	if (master->mlx)
-		mlx_terminate(master->mlx);
+	mlx_terminate(master->mlx);
+	exit(0);
 }
 
 int	main(int argc, char **argv)

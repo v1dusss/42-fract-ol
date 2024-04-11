@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 21:23:32 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:01:30 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,24 @@ void	which_fract(int argc, char **argv, t_master *master)
 		julia_settings(argc, argv, master);
 	else
 		usage();
+}
+
+void	mouseaction(double a, double b, void *params)
+{
+	double		multiplier;
+	t_master	*master;
+
+	(void)a;
+	master = (t_master *)params;
+	if (b > 0)
+		multiplier = 1.1;
+	else
+		multiplier = 0.9;
+	master->scale *= multiplier;
+	if (master->set == MANDELBROT)
+		loop_img_mandelbrot(master);
+	else if (master->set == JULIA)
+		loop_img_julia(master);
+	else
+		loop_img_buringship(master);
 }
