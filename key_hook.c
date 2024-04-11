@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 14:46:11 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/11 16:09:44 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:16:17 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	key_rgb(t_master *master, mlx_key_data_t key_data)
 	ft_printf("R = %d\nG = %d\nB = %d\n", master->r, master->g, master->b);
 	ft_printf("=======\n");
 }
+
 void	key_iterations(t_master *master, mlx_key_data_t key_data)
 {
 	int	x;
