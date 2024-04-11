@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/11 16:43:14 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:48:59 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ void	mouseaction(double a, double b, void *params)
 
 	(void)a;
 	master = (t_master *)params;
+	if (mlx_is_key_down(master->mlx, MLX_KEY_LEFT_SHIFT)
+		|| mlx_is_key_down(master->mlx, MLX_KEY_RIGHT_SHIFT))
+		return ;
 	if (b > 0)
 		multiplier = 1.1;
 	else

@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:43:32 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/10 21:00:18 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:00:46 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	buringship(t_master *master)
 		+ master->fract->vertical_shift - 0.5;
 	master->px->ca = master->px->a;
 	master->px->cb = master->px->b;
-	while (master->px->i < master->iterations)
+	while (master->px->i++ < master->iterations)
 	{
 		master->px->aa = master->px->a * master->px->a - master->px->b
 			* master->px->b;
@@ -42,9 +42,8 @@ void	buringship(t_master *master)
 		if ((master->px->a * master->px->a + master->px->b
 				* master->px->b) > 16)
 			break ;
-		master->px->i++;
 	}
-	if (master->px->i == master->iterations || master->px->i == 0)
+	if (master->px->i == (master->iterations + 1) || master->px->i == 0)
 		mlx_put_pixel(master->img, master->fract->x, master->fract->y,
 			get_grey(0, 255));
 	else if (master->px->i > 0)
