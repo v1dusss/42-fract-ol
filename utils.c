@@ -6,7 +6,7 @@
 /*   By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 16:16:10 by vsivanat          #+#    #+#             */
-/*   Updated: 2024/04/11 16:01:30 by vsivanat         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:43:14 by vsivanat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,19 @@ void	julia_settings(int argc, char **argv, t_master *master)
 
 void	which_fract(int argc, char **argv, t_master *master)
 {
-	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
+	if (argc == 2 && ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 	{
 		master->set = MANDELBROT;
 		ft_printf("Fractol: mandelbrot\n");
 		master->fract->fract_name = "mandelbrot";
 	}
-	else if (ft_strncmp(argv[1], "burningship", 12) == 0)
+	else if (argc == 2 && ft_strncmp(argv[1], "burningship", 12) == 0)
 	{
 		master->set = BURNINGSHIP;
 		ft_printf("Fractol: burningship\n");
 		master->fract->fract_name = "burningship";
 	}
-	else if (ft_strncmp(argv[1], "julia", 6) == 0 && argc != 3)
+	else if ((argc == 2 || argc == 4) && ft_strncmp(argv[1], "julia", 6) == 0)
 		julia_settings(argc, argv, master);
 	else
 		usage();
