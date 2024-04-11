@@ -6,7 +6,7 @@
 #    By: vsivanat <vsivanat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 17:35:41 by vsivanat          #+#    #+#              #
-#    Updated: 2024/04/10 20:25:15 by vsivanat         ###   ########.fr        #
+#    Updated: 2024/04/11 17:22:11 by vsivanat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ libft:
 libmlx:
 	@if git submodule status | egrep -q '^[-+]' ; then \
 		echo "INFO: Need to reinitialize git submodules"; \
+		git checkout f87c401e495dcf56e9162a2241d7761238bb189f; \
 		git submodule update --init; \
 	fi
 	cmake $(MLXDIR) -B $(MLXDIR)/build
